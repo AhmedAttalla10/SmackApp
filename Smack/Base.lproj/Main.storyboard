@@ -71,7 +71,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gzs-p8-YEm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="channelCell" id="gzs-p8-YEm" customClass="ChannelCell" customModule="Smack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gzs-p8-YEm" id="6Fa-de-7x4">
@@ -91,12 +91,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="channelName" destination="6Pd-LG-0Jp" id="t8I-vv-nAX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqY-Cb-4PS">
                                 <rect key="frame" x="317" y="88" width="22" height="22"/>
                                 <state key="normal" image="addChannelButton"/>
+                                <connections>
+                                    <action selector="addChannelPressed:" destination="cZj-Lp-srk" eventType="touchUpInside" id="sRl-lU-tLJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,6 +126,8 @@
                     </view>
                     <connections>
                         <outlet property="loginBtn" destination="J0r-pE-ITF" id="YSz-V9-Q5V"/>
+                        <outlet property="tableView" destination="QmV-d3-Mfs" id="pMI-N1-gc8"/>
+                        <outlet property="userImg" destination="LWA-gv-o6z" id="XPK-vz-BLw"/>
                         <segue destination="Nbr-iN-o1j" kind="show" identifier="toLogin" id="PVw-ru-lWX"/>
                     </connections>
                 </viewController>
@@ -229,16 +237,25 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginPressed:" destination="Nbr-iN-o1j" eventType="touchUpInside" id="V8W-jH-cLL"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2OX-hK-cGP">
+                                <rect key="frame" x="188.66666666666666" y="249.66666666666663" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jAA-lP-yx7" firstAttribute="centerX" secondItem="2MH-ky-cRS" secondAttribute="centerX" id="0F9-Xt-tfW"/>
                             <constraint firstItem="Bcq-I2-tJp" firstAttribute="trailing" secondItem="fL7-RP-pES" secondAttribute="trailing" constant="28" id="5fr-lr-vqE"/>
                             <constraint firstItem="a0V-Ir-8u4" firstAttribute="centerX" secondItem="2MH-ky-cRS" secondAttribute="centerX" id="DOI-Z8-N9J"/>
+                            <constraint firstItem="2OX-hK-cGP" firstAttribute="centerY" secondItem="2MH-ky-cRS" secondAttribute="centerY" constant="-100" id="Epv-tf-VLN"/>
                             <constraint firstItem="iQE-1g-9Bl" firstAttribute="top" secondItem="Bcq-I2-tJp" secondAttribute="top" constant="60" id="Gj4-Od-isw"/>
                             <constraint firstItem="jAA-lP-yx7" firstAttribute="top" secondItem="iQE-1g-9Bl" secondAttribute="bottom" constant="60" id="IVY-71-dZn"/>
                             <constraint firstItem="iQE-1g-9Bl" firstAttribute="centerX" secondItem="2MH-ky-cRS" secondAttribute="centerX" id="NwQ-hb-CAs"/>
+                            <constraint firstItem="2OX-hK-cGP" firstAttribute="centerX" secondItem="2MH-ky-cRS" secondAttribute="centerX" id="e3u-UQ-gkX"/>
                             <constraint firstItem="Bwn-L4-Jvq" firstAttribute="top" secondItem="a0V-Ir-8u4" secondAttribute="bottom" id="osE-B2-AXF"/>
                             <constraint firstItem="Bwn-L4-Jvq" firstAttribute="centerX" secondItem="2MH-ky-cRS" secondAttribute="centerX" id="pVy-p8-cQZ"/>
                             <constraint firstItem="fL7-RP-pES" firstAttribute="top" secondItem="Bcq-I2-tJp" secondAttribute="top" constant="8" id="r4l-A7-P4f"/>
@@ -247,6 +264,9 @@
                         <viewLayoutGuide key="safeArea" id="Bcq-I2-tJp"/>
                     </view>
                     <connections>
+                        <outlet property="passwordTxt" destination="MAW-Hl-pNX" id="N4I-kF-5tc"/>
+                        <outlet property="spinner" destination="2OX-hK-cGP" id="aIh-Wf-qie"/>
+                        <outlet property="usernameTxt" destination="6eG-VC-2gg" id="Mmp-yE-3Vl"/>
                         <segue destination="FmQ-2B-aJF" kind="show" identifier="toCreateAccount" id="sqc-Vn-vOn"/>
                     </connections>
                 </viewController>
