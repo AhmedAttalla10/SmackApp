@@ -30,6 +30,11 @@ class SocketService: NSObject {
         socket.disconnect()
     }
     
+    
+    
+    
+    
+    
     func addChannel(channelName: String, channelDescription: String, completion: @escaping CompletionHandler) {
 //        socket.emitAll("newChannel", channelName, channelDescription)
         socket.emit("newChannel", channelName, channelDescription)
